@@ -1,10 +1,9 @@
-### Astrape for Netconf (c) 2024-2025 by Constantine Kyriakopoulos, zfox@users.sourceforge.net.
+### Astrape for Netconf (c) 2024-2025 by Constantine Kyriakopoulos
 #### Version: 0.1
 #### License: GNU GPL Version 2
+#### zfox@users.sourceforge.net
 
 Packet-optical node transceiver frequency allocation.
-Astrape for Netconf (c) 2024-2025 by Constantine Kyriakopoulos, zfox@users.sourceforge.net.
-
 
 ### Introduction
 
