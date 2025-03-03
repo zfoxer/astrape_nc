@@ -5,6 +5,26 @@
 Packet-optical node transceiver frequency allocation.
 Astrape for Netconf (c) 2024-2025 by Constantine Kyriakopoulos, zfox@users.sourceforge.net.
 
+
+### Introduction
+
+In an optical network scenario which consists of multiple nodes (whiteboxes) at its edges and ROADMs in-between, the 
+coherent transceiver average laser configuration time is improved. The process is evaluated according 
+to a testbed setup. This is facilitated in the appropriate lab equipment (or via simulation when required).
+
+For that purpose, a software agent (Netconf server) residing at the whiteboxes, is developed receiving input 
+from the Software-Defined Networking (SDN) packet controller (PacketCTL - a Netconf client). Then, configuration 
+of the local transceiver laser frequencies of the controlled pluggable devices takes place, for facilitating the 
+connectivity in-between the ROADM network. Also, the agent records and reports back telemetry data (feedback) which 
+is used by the PacketCTL's resource-allocating mechanism to improve efficiency within the network topology.
+
+PacketCTL is able to improve the overall control plane configuration time, by utilising an internal 
+Feed-forward Neural Network (FNN) which is based on Q-Learning (QL). This Reinforcement Learning (RL) 
+mechanism adapts to the current operating environment by efficiently allocating frequency slots to 
+the pluggables, decreasing the average laser configuration times. To achieve this, it exploits the 
+previous configuration times as feedback input while in learning state.
+
+
 ### Prerequisites to execution
 
 First, compile _wopen_sim.cpp_. This is the simple simulator that configures the laser frequency of the pluggable. 
@@ -16,6 +36,7 @@ the YANG instance by a Python class instance. Replace paths with the correct loc
 -o /stuff/coding/astrape_nc/modules/pluggable_config.py \
 /stuff/coding/astrape_nc/modules/pluggable-config@2024-11-19.yang
 </pre>
+
 
 ### Sequence of events from the initial command to setting the pluggable frequency
 
@@ -32,10 +53,12 @@ actual configuration time as feedback. Finally, the controller updates its local
   <img src="sequence.png" alt="Alt text" style="max-width: 100%; height: auto;">
 </p>
 
+
 ### Usage
 
 Configure the system, train the ML agent (multiple attempts to produce efficient results), launch some optical nodes 
 with separate shell processes, execute the packet controller. Connectivity is realised via system socket files.
+
 
 ### Changelog
 
