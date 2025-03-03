@@ -1,0 +1,44 @@
+module pluggable-config {
+  namespace "urn:pluggable-config:1.0";
+  prefix dev;
+
+  revision 2024-11-19 {
+    description "Initial revision of the pluggable-config module.";
+  }
+
+  container pluggables {
+    description "Container for pluggables.";
+    list pluggable {
+      key "pluggable-id";
+      description "List of pluggables and their configurations.";
+      leaf pluggable-id {
+        type string;
+        description "Unique identifier for the pluggable.";
+      }
+      container pluggable-settings {
+        description "Configuration and operational state of the pluggable.";
+        leaf frequency {
+          type uint32 {
+            range "191300..196100";
+          }
+          mandatory true;
+          description "The frequency of the device in GHz.";
+        }
+        leaf power {
+          type decimal64 {
+            range "-6.0..1.0";
+            fraction-digits 1;
+          }
+          default "0";
+          description "The power of the pluggable in mWatts per dB.";  
+        }
+        leaf config_time {
+          type decimal64 {
+            range "0.0..150.0";
+            fraction-digits 1;
+          }
+        }
+      }
+    }
+  }
+}
